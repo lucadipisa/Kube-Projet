@@ -11,14 +11,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    # Si besoin
     - name: Install Flask
       run: pip install Flask
       
-    # Connexion à Azure avec l'authentification par client ID et secret
+    # Connexion à Azure avec l'authentification par service principal
     - name: Azure Login
-      run: |  
-        az login --service-principal -u <appID> -p <secret> --tenant <tenantID>
+      run: |
+        az login --service-principal -u "${{ secrets.AZURE_CLIENT_ID }}" -p "${{ secrets.AZURE_CLIENT_SECRET }}" --tenant "${{ secrets.TENANT_ID }}"
         az account set --subscription d18efcbe-caa9-4004-ac2c-7312261e11de
         az aks get-credentials --resource-group hitema_kube --name hitema --overwrite-existing
 
