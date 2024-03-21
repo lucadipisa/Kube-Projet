@@ -1,5 +1,5 @@
 name: Build Docker Image
-run-name: ${{ github.actor }} is building and pushing image 🚀
+run-name: ${{ github.actor }} construit et pousse l'image 🚀
 
 on:
   push:
@@ -15,10 +15,10 @@ jobs:
     - name: Install Flask
       run: pip install Flask
       
-    # Connexion à Azure
+    # Connexion à Azure avec l'authentification par client ID et secret
     - name: Azure Login
       run: |  
-        az login --username ${{ secrets.AZURE_USERNAME }} --password ${{ secrets.AZURE_PASSWORD }} --tenant ${{ secrets.TENANT_ID }}
+        az login --service-principal -u <appID> -p <secret> --tenant <tenantID>
         az account set --subscription d18efcbe-caa9-4004-ac2c-7312261e11de
         az aks get-credentials --resource-group hitema_kube --name hitema --overwrite-existing
 
