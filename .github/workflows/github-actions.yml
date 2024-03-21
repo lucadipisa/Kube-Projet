@@ -11,9 +11,29 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    
+    # Si besoin
     - name: Install Flask
       run: pip install Flask
+
+    # Installer Azure CLI
+    - name: Install Azure CLI
+      uses: azure/CLI@v1
+
+    # Installer kubectl
+    - name: Install kubectl
+      run: |
+        sudo apt-get update && sudo apt-get install -y apt-transport-https gnupg2
+        curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+        echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
+        sudo apt-get update
+        sudo apt-get install -y kubectl
+
+    # Connexion à Azure
+    - name: Azure Login
+      run: |  
+        az login --username ${{ secrets.AZURE_USERNAME }} --password ${{ secrets.AZURE_PASSWORD }}
+        az account set --subscription d18efcbe-caa9-4004-ac2c-7312261e11de
+        az aks get-credentials --resource-group hitema_kube --name hitema --overwrite-existing
 
     - name: Checkout GitCode
       uses: actions/checkout@v3
@@ -37,5 +57,6 @@ jobs:
         push: true
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/flask-actions-project:latest
   
+    # Appliquer le déploiement sur Kubernetes
     - name: Deploy to Kubernetes
-      run: kubectl apply -f deploy.yaml
+      run: kubectl apply -f deployment.yaml 
