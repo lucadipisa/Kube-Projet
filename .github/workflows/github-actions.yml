@@ -18,7 +18,7 @@ jobs:
     # Connexion à Azure
     - name: Azure Login
       run: |  
-        az login --username ${{ secrets.AZURE_USERNAME }} --password ${{ secrets.AZURE_PASSWORD }} --tenant ${{ secrets.TENANT_ID }}
+        az login --username ${{ secrets.AZURE_USERNAME }} --password ${{ secrets.AZURE_PASSWORD }}
         az account set --subscription d18efcbe-caa9-4004-ac2c-7312261e11de
         az aks get-credentials --resource-group hitema_kube --name hitema --overwrite-existing
 
