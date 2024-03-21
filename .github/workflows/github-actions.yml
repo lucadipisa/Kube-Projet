@@ -38,4 +38,4 @@ jobs:
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/flask-actions-project:latest
   
     - name: Deploy to Kubernetes
-      run: kubectl apply -f deploy.yaml 
+      run: kubectl apply -f deploy.yaml
