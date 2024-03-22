@@ -5,7 +5,7 @@ app = Flask(__name__)
 # Endpoint GET
 @app.route('/get', methods=['GET'])
 def get_data():
-    data = {"message": "GET request successful - 3"}
+    data = {"message": "GET request successful - 4"}
     return jsonify(data), 200
 
 # Endpoint POST
