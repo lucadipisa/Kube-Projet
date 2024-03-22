@@ -1,19 +1,20 @@
 apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
-  name: flask-deployment
+  name: flask-deployment-ldp
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: flask
+      app: flask-dn
   template:
     metadata:
       labels:
-        app: flask
+        app: flask-dn
     spec:
       containers:
-      - name: flask-container
+      - name: flask-container-ldp
         image: axos15/flask-actions-project
         ports:
         - containerPort: 7897
+          name: flaskwebsvc-ldp

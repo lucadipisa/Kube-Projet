@@ -16,6 +16,7 @@ jobs:
     - name: Azure Login
       run: |
         az login -u "${{ secrets.APPID }}" --service-principal -p "${{ secrets.SECRET }}" --tenant "${{ secrets.TENANT_ID }}"
+        az aks get-credentials --resource-group ${{ secrets.RESOURCE_GROUP }} --name ${{ secrets.NAME_CRED }} --overwrite-existing
 
     - name: Checkout GitCode
       uses: actions/checkout@v3
