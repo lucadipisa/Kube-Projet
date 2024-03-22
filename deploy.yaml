@@ -7,10 +7,6 @@ spec:
   selector:
     matchLabels:
       app: flaskldp  
-  strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxUnavailable: 1
   template:
     metadata:
       labels:
@@ -21,3 +17,4 @@ spec:
         image: axos15/flask-actions-project
         ports:
         - containerPort: 5000
+      restartPolicy: Always  # Redémarre toujours le Pod en cas d'échec
