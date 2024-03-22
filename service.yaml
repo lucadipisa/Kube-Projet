@@ -1,13 +1,19 @@
-apiVersion: v1
-kind: Service
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: flask-service-ldp
+  name: flask-deployment-ldp
 spec:
+  replicas: 3
   selector:
-    app: flaskldp
-  ports:
-  - name: flask-service-port
-    protocol: TCP
-    port: 80
-    targetPort: 5000
-  type: LoadBalancer
+    matchLabels:
+      app: flask-ldp  
+  template:
+    metadata:
+      labels:
+        app: flask-ldp 
+    spec:
+      containers:
+      - name: flask-app
+        image: your-flask-image
+        ports:
+        - containerPort: 5000
