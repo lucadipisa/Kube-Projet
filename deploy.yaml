@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: flask-container-ldp
-        image: axos15/flask-actions-project:latest
+        image: axos15/flask-actions-project
         ports:
         - containerPort: 5000
-      restartPolicy: Always 
+      restartPolicy: Always  # Redémarre toujours le Pod en cas d'échec
