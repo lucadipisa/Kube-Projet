@@ -14,14 +14,13 @@ jobs:
     - name: Install Flask
       run: pip install Flask
       
+    # Connexion à Azure avec l'authentification par service principal
+    - name: Azure Login
+      run: |
+        az login --service-principal -u "${{ secrets.email }}" -p "${{ secrets.mdp }}" --tenant "${{ secrets.TENANT_ID }}"
+        az account set --subscription d18efcbe-caa9-4004-ac2c-7312261e11de
+        az aks get-credentials --resource-group hitema_kube --name hitema --overwrite-existing
 
-    - name: Azure login
-        uses: azure/login@v2
-        with:
-          client-id: ${{ secrets.APPID }}
-          tenant-id: ${{ secrets.TENANT_ID }}
-          secret-id: ${{ secrets.SECRET }}
-          enable-AzPSSession: true
 
     - name: Checkout GitCode
       uses: actions/checkout@v3
@@ -45,5 +44,6 @@ jobs:
         push: true
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/flask-actions-project:latest
   
+    # Appliquer le déploiement sur Kubernetes
     - name: Deploy to Kubernetes
-      run: kubectl get pods
+      run: kubectl apply -f deployment.yaml 
