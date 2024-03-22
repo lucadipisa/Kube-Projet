@@ -4,7 +4,7 @@ metadata:
   name: flask-service-ldp
 spec:
   selector:
-    app: flaskl-dp
+    app: flaskldp
   ports:
   - name: flask-service-port
     protocol: TCP
