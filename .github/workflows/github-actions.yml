@@ -14,8 +14,11 @@ jobs:
     - name: Install Flask
       run: pip install Flask
       
+    # Connexion à Azure avec l'authentification par service principal
     - name: Azure Login
-      run: az login --use-device-code
+      run: |
+        az login -u "${{ secrets.APPID }}" --service-principal -p "${{ secrets.SECRET }}" --tenant "${{ secrets.TENANT_ID }}"
+
 
     - name: Checkout GitCode
       uses: actions/checkout@v3
