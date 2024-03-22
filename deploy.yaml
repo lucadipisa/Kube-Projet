@@ -6,14 +6,14 @@ spec:
   replicas: 3
   selector:
     matchLabels:
-      app: flask-ldp  
+      app: flask-ldp
   template:
     metadata:
       labels:
-        app: flask-ldp  
+        app: flask-ldp
     spec:
       containers:
-      - name: flask-app
-        image: your-flask-image
+      - name: flask-container
+        image: axos15/flask-actions-project:latest
         ports:
         - containerPort: 5000
