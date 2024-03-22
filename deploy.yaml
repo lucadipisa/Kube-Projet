@@ -17,4 +17,4 @@ spec:
         image: axos15/flask-actions-project
         ports:
         - containerPort: 7897
-          name: flaskwebsvc-ldp
+      
