@@ -17,9 +17,8 @@ jobs:
     # Connexion à Azure avec l'authentification par service principal
     - name: Azure Login
       run: |
-        az login --service-principal -u "${{ secrets.APPID }}" -p "${{ secrets.SECRET }}" --tenant "${{ secrets.TENANT_ID }}"
+        az login --service-principal --allow-no-subscription -u "${{ secrets.APPID }}" -p "${{ secrets.SECRET }}" --tenant "${{ secrets.TENANT_ID }}"
         
-
 
     - name: Checkout GitCode
       uses: actions/checkout@v3
