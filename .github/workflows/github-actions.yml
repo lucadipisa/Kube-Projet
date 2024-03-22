@@ -1,11 +1,10 @@
 name: Build Docker Image
-run-name: ${{ github.actor }} construit et pousse l'image 🚀
+run-name: ${{ github.actor }} construit et pousse l'image 
 
 on:
   push:
     branches:
       - main
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -13,12 +12,10 @@ jobs:
     steps:
     - name: Install Flask
       run: pip install Flask
-      
-    # Connexion à Azure avec l'authentification par service principal
+
     - name: Azure Login
       run: |
         az login -u "${{ secrets.APPID }}" --service-principal -p "${{ secrets.SECRET }}" --tenant "${{ secrets.TENANT_ID }}"
-
 
     - name: Checkout GitCode
       uses: actions/checkout@v3
@@ -42,6 +39,7 @@ jobs:
         push: true
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/flask-actions-project:latest
   
-    # Appliquer le déploiement sur Kubernetes
     - name: Deploy to Kubernetes
-      run: kubectl apply -f deploy.yaml 
+      run: kubectl --server ${{ secrets.SERVER }}
+        kubectl apply -f deployment.yaml 
+        kubectl apply -f service.yaml 
