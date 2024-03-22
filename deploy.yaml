@@ -2,21 +2,19 @@ apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
   name: flask-deployment-ldp
-  labels:
-    app.kubernetes.io/name: flask-ldp
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: flask-ldp
+      app: flask-dn
   template:
     metadata:
       labels:
-        app: flask-ldp
+        app: flask-dn
     spec:
       containers:
       - name: flask-container-ldp
         image: axos15/flask-actions-project
         ports:
-        - containerPort: 5000
-          name: flaskweb-ldp
+        - containerPort: 7897
+          name: flaskwebsvc-ldp
