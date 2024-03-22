@@ -9,5 +9,5 @@ spec:
   ports:
   - name: flask-service-port
     protocol: TCP
-    port: 52135
+    port: 80
     targetPort: 5000
