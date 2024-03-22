@@ -6,7 +6,7 @@ spec:
   selector:
     app: flaskldp
   ports:
-  - name: flask-service-port
+  - name: flask-service-port-ldp
     protocol: TCP
     port: 80
     targetPort: 5000

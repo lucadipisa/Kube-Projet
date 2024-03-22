@@ -7,13 +7,13 @@ spec:
   selector:
     matchLabels:
       app: flaskldp  
-  template
+  template:
     metadata:
       labels:
         app: flaskldp 
     spec:
       containers:
-      - name: flask-container
+      - name: flask-container-ldp
         image: axos15/flask-actions-project
         ports:
         - containerPort: 5000
