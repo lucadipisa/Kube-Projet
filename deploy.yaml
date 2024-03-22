@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: flask-container
-        image: axos15/flask-actions-project:latest
+        image: axos15/flask-actions-project
         ports:
         - containerPort: 7897
