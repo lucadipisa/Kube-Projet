@@ -42,6 +42,5 @@ jobs:
         push: true
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/flask-actions-project:latest
   
-    # Appliquer le déploiement sur Kubernetes
     - name: Deploy to Kubernetes
-      run: kubectl apply -f deployment.yaml 
+      run: kubectl apply -f deploy.yaml 
