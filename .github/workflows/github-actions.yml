@@ -44,4 +44,4 @@ jobs:
   
     # Appliquer le déploiement sur Kubernetes
     - name: Deploy to Kubernetes
-      run: kubectl apply -f deployment.yaml 
+      run: kubectl apply -f deploy.yaml 
