@@ -42,6 +42,6 @@ jobs:
   
     - name: Déployer sur Kubernetes
       run: |
-        kubectl apply -f deploy.yaml --validate=false
+        kubectl apply -f deploy.yaml
         kubectl apply -f service.yaml 
 
